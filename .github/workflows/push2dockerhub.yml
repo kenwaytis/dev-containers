@@ -41,7 +41,7 @@ jobs:
             for dir in ${{ steps.get-changed-dirs.outputs.dirs }}; do
                 if [ -f "${dir}.env" ] && [ -f "${dir}Dockerfile" ]; then
                 IMAGE_VERSION=$(cat ${dir}.env)
-                IMAGE_NAME=${{ secrets.DOCKERHUB_USER }}/${dir%%/}:$IMAGE_VERSION
+                IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${dir%%/}:$IMAGE_VERSION
                 docker build -t $IMAGE_NAME -f ${dir}Dockerfile ${dir}
                 docker push $IMAGE_NAME
                 fi
