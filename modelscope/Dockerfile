@@ -20,7 +20,8 @@ RUN pip install --no-cache-dir  tensorflow-gpu==1.15
 
 RUN pip install --no-cache-dir  \
     modelscope \
-    modelscope[multi-modal] && \
+    modelscope[multi-modal] \
+    pysptk && \
     pip install --no-cache-dir  modelscope[nlp] -f https://modelscope.oss-cn-beijing.aliyuncs.com/releases/repo.html && \
     pip install --no-cache-dir  modelscope[cv] -f https://modelscope.oss-cn-beijing.aliyuncs.com/releases/repo.html && \
     pip install --no-cache-dir  modelscope[audio] -f https://modelscope.oss-cn-beijing.aliyuncs.com/releases/repo.html && \

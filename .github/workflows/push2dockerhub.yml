@@ -37,6 +37,7 @@ jobs:
         run: |
             CHANGED_DIRS=$(git diff --dirstat=files,0 HEAD~1..HEAD | awk '{print $2}' | grep '^[^\.]')
             echo "dirs=$CHANGED_DIRS" >> "$GITHUB_ENV"
+            echo "dirs=$CHANGED_DIRS"
 
       - name: Build and push Docker images
         run: |
