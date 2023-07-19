@@ -1,0 +1,48 @@
+name: Publish Docker image
+
+on:
+  push:
+    branches: [ master, main ]
+
+jobs:
+  push_to_registry:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Free Disk Space in Ubuntu
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: true
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: false
+          docker-images: true
+          swap-storage: true
+
+      - name: Check out the repo
+        uses: actions/checkout@v3
+      
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          logout: true
+
+      - name: Get changed directories
+        id: get-changed-dirs
+        run: |
+            CHANGED_DIRS=$(git diff --dirstat=files,0 HEAD~1..HEAD | awk '{print $2}')
+            echo "::set-output name=dirs::$CHANGED_DIRS"
+
+      - name: Build and push Docker images
+        run: |
+            for dir in ${{ steps.get-changed-dirs.outputs.dirs }}; do
+                if [ -f "${dir}.env" ] && [ -f "${dir}Dockerfile" ]; then
+                IMAGE_VERSION=$(cat ${dir}.env)
+                IMAGE_NAME=${{ secrets.DOCKERHUB_USER }}/${dir%%/}:$IMAGE_VERSION
+                docker build -t $IMAGE_NAME -f ${dir}Dockerfile ${dir}
+                docker push $IMAGE_NAME
+                fi
+            done

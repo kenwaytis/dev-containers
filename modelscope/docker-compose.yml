@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile
       args:
         HTTP_PROXY: ${HTTP_PROXY}
-    image: paidax/modelscope:0.3
+    image: paidax/modelscope:0.5
     container_name: modelscope
     deploy:
       resources:

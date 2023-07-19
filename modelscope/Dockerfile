@@ -1,4 +1,4 @@
-FROM paidax/dev-containers:cuda11.3-py3.8
+FROM paidax/dev-containers:cuda11.3-py3.7
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG HTTP_PROXY
@@ -10,30 +10,21 @@ ENV HTTPS_PROXY=${HTTP_PROXY}
 RUN apt update && \
     apt install -y \
     tzdata \
-    libsndfile1 \
-    software-properties-common && \
-    apt clean && \
-    rm -rf /var/lib/apt/lists/*
-RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin && \
-    mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600 && \
-    apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A4B469963BF863CC && \
-    add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /" && \
-    apt-get update && \
-    apt-get -y install cuda --fix-missing&& \
+    libsndfile1 && \
     apt clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --extra-index-url https://download.pytorch.org/whl/cu113 && \
-    pip install tensorflow-gpu==1.15
+RUN pip install --no-cache-dir torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --extra-index-url https://download.pytorch.org/whl/cu113
+RUN pip install --no-cache-dir  tensorflow-gpu==1.15
+# Note: tensorflow-gpu==1.15 may cause some error while using cv model. May change it later.
 
-RUN pip install \
+RUN pip install --no-cache-dir  \
     modelscope \
     modelscope[multi-modal] && \
-    pip install modelscope[nlp] -f https://modelscope.oss-cn-beijing.aliyuncs.com/releases/repo.html && \
-    pip install modelscope[cv] -f https://modelscope.oss-cn-beijing.aliyuncs.com/releases/repo.html && \
-    pip install modelscope[audio] -f https://modelscope.oss-cn-beijing.aliyuncs.com/releases/repo.html && \
+    pip install --no-cache-dir  modelscope[nlp] -f https://modelscope.oss-cn-beijing.aliyuncs.com/releases/repo.html && \
+    pip install --no-cache-dir  modelscope[cv] -f https://modelscope.oss-cn-beijing.aliyuncs.com/releases/repo.html && \
+    pip install --no-cache-dir  modelscope[audio] -f https://modelscope.oss-cn-beijing.aliyuncs.com/releases/repo.html && \
     pip uninstall mmcv && \
-    pip install -U openmim && \
+    pip install --no-cache-dir  -U openmim && \
     mim install mmcv-full
 
