@@ -21,7 +21,7 @@ RUN pip install --no-cache-dir  tensorflow-gpu==1.15
 # Note: tensorflow-gpu==1.15 may cause some error while using cv model. May change it later
 
 RUN pip install --no-cache-dir cython && \
-    pip install --no-cache-dir pysptk --no-build-isolation
+    pip install git+https://github.com/r9y9/pysptk  
 
 RUN pip install --no-cache-dir  \
     modelscope \
