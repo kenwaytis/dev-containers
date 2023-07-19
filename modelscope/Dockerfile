@@ -18,7 +18,8 @@ RUN pip install --no-cache-dir torch==1.11.0+cu113 torchvision==0.12.0+cu113 tor
 RUN pip install --no-cache-dir  tensorflow-gpu==1.15
 # Note: tensorflow-gpu==1.15 may cause some error while using cv model. May change it later
 
-RUN pip install --no-cache-dir pysptk --no-build-isolation
+RUN pip install --no-cache-dir cython && \
+    pip install --no-cache-dir pysptk --no-build-isolation
 
 RUN pip install --no-cache-dir  \
     modelscope \
