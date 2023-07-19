@@ -41,10 +41,10 @@ jobs:
       - name: Build and push Docker images
         run: |
             for dir in ${{ env.dirs }}; do
-                if [ -f "${dir}.env" ] && [ -f "${dir}Dockerfile" ]; then
-                IMAGE_VERSION=$(cat ${dir}.env)
+                if [ -f "${dir}/.env" ] && [ -f "${dir}/Dockerfile" ]; then
+                IMAGE_VERSION=$(grep -oP '(?<=version = )\S+' ${dir}/.env)
                 IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${dir%%/}:$IMAGE_VERSION
-                docker build -t $IMAGE_NAME -f ${dir}Dockerfile ${dir}
+                docker build -t $IMAGE_NAME -f ${dir}/Dockerfile ${dir}
                 docker push $IMAGE_NAME
                 fi
             done
