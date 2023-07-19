@@ -18,7 +18,7 @@ RUN pip install --no-cache-dir torch==1.11.0+cu113 torchvision==0.12.0+cu113 tor
 # Note: tensorflow-gpu==1.15 may cause some error while using cv model. May change it later
 
 RUN pip install --no-cache-dir --upgrade Cython==0.29.35 && \
-    pip install --no-cache-dir pysptk --no-build-isolation && \
+    pip install --no-cache-dir pysptk==0.1.21 --no-build-isolation && \
     pip install --no-cache-dir  \
     modelscope \
     modelscope[multi-modal] && \
