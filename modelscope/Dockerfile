@@ -16,7 +16,7 @@ RUN apt update && \
 
 RUN pip install --no-cache-dir torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --extra-index-url https://download.pytorch.org/whl/cu113
 RUN pip install --no-cache-dir  tensorflow-gpu==1.15
-# TODO: tensorflow-gpu==1.15 may cause some error while using cv model. May change it later.
+# TODO: tensorflow-gpu==1.15 may cause some error while using cv model. May change it later
 
 RUN pip install --no-cache-dir  \
     modelscope \

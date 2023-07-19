@@ -34,11 +34,11 @@ jobs:
         id: get-changed-dirs
         run: |
             CHANGED_DIRS=$(git diff --dirstat=files,0 HEAD~1..HEAD | awk '{print $2}')
-            echo "::set-output name=dirs::$CHANGED_DIRS"
+            echo "dirs=$CHANGED_DIRS" >> "$GITHUB_ENV"
 
       - name: Build and push Docker images
         run: |
-            for dir in ${{ steps.get-changed-dirs.outputs.dirs }}; do
+            for dir in ${{ env.dirs }}; do
                 if [ -f "${dir}.env" ] && [ -f "${dir}Dockerfile" ]; then
                 IMAGE_VERSION=$(cat ${dir}.env)
                 IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${dir%%/}:$IMAGE_VERSION
