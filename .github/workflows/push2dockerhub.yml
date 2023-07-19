@@ -22,6 +22,8 @@ jobs:
 
       - name: Check out the repo
         uses: actions/checkout@v3
+        with:
+            fetch-depth: 2
       
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
@@ -33,7 +35,7 @@ jobs:
       - name: Get changed directories
         id: get-changed-dirs
         run: |
-            CHANGED_DIRS=$(git diff --dirstat=files,0 HEAD~1..HEAD | awk '{print $2}')
+            CHANGED_DIRS=$(git diff --dirstat=files,0 HEAD~1..HEAD | awk '{print $2}' | grep '^[^\.]')
             echo "dirs=$CHANGED_DIRS" >> "$GITHUB_ENV"
 
       - name: Build and push Docker images
