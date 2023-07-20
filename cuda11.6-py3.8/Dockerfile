@@ -1,6 +1,7 @@
 FROM nvidia/cuda:11.6.2-runtime-ubuntu20.04
 
 WORKDIR /home
+
 ENV TZ=Etc/CN
 ENV HTTP_PROXY=${HTTP_PROXY}
 ENV HTTPS_PROXY=${HTTP_PROXY}
