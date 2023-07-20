@@ -2,8 +2,10 @@ FROM nvidia/cuda:11.3.1-cudnn8-runtime-ubuntu20.04
 
 WORKDIR /home
 
+ARG DEBIAN_FRONTEND=noninteractive
 ARG HTTP_PROXY
 
+ENV TZ=Etc/CN
 ENV HTTP_PROXY=${HTTP_PROXY}
 ENV HTTPS_PROXY=${HTTP_PROXY}
 
@@ -19,6 +21,7 @@ RUN apt update && \
     libffi-dev \
     libbz2-dev \
     liblzma-dev \
+    tzdata \
     wget \
     git && \
     apt clean && \

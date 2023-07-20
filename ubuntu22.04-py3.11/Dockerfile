@@ -1,6 +1,5 @@
 FROM ubuntu:22.04
-ARG HTTP_PROXY
-
+ENV TZ=Etc/CN
 ENV HTTP_PROXY=${HTTP_PROXY}
 ENV HTTPS_PROXY=${HTTP_PROXY}
 
@@ -16,6 +15,7 @@ RUN apt update && \
     libffi-dev \
     libbz2-dev \
     liblzma-dev \
+    tzdata \
     wget \
     git && \
     apt clean && \
