@@ -27,5 +27,6 @@ RUN pip install --no-cache-dir --upgrade Cython==0.29.35 && \
     pip install --no-cache-dir  modelscope[audio] -f https://modelscope.oss-cn-beijing.aliyuncs.com/releases/repo.html && \
     pip uninstall mmcv && \
     pip install --no-cache-dir  -U openmim && \
-    mim install mmcv-full
+    mim install mmcv-full && \
+    pip install --no-cache-dir "modelscope[audio,cv,nlp,multi-modal,science]" -f https://modelscope.oss-cn-beijing.aliyuncs.com/releases/repo.html
 # Fix:fix while building wheels for pysptk, raise error because of cython's new version.
