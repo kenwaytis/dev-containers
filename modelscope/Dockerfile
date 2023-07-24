@@ -1,4 +1,4 @@
-FROM paidax/dev-containers:cuda11.3-py3.7
+FROM paidax/dev-containers:cuda10.0-py3.7-v1.0
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG HTTP_PROXY
