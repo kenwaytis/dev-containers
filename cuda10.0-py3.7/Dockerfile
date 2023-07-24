@@ -38,7 +38,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A4B469963BF863CC &&
     apt clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN wget https://developer.nvidia.com/compute/machine-learning/cudnn/secure/7.6.5.32/Production/10.0_20191031/Ubuntu18_04-x64/libcudnn7_7.6.5.32-1+cuda10.0_amd64.deb && \
+RUN wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/libcudnn7_7.6.5.32-1+cuda10.0_amd64.deb && \
     dpkg -i libcudnn7_7.6.5.32-1+cuda10.0_amd64.deb
 
 RUN mkdir /python && \
