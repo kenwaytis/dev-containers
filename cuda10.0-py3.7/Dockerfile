@@ -3,10 +3,7 @@ FROM ian40306/cuda10.0-cudnn7-devel-ubuntu18.04:latest
 WORKDIR /home
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG HTTP_PROXY
 ENV TZ=Etc/CN
-ENV HTTP_PROXY=${HTTP_PROXY}
-ENV HTTPS_PROXY=${HTTP_PROXY}
 
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A4B469963BF863CC && \
     apt update && \
@@ -40,7 +37,4 @@ RUN mkdir /python && \
     pip install --no-cache-dir pylint black ipdb soundfile && \
     cd / && \
     rm -rf /python
-
-ENV HTTP_PROXY=""
-ENV HTTPS_PROXY=""
 
