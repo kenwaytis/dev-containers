@@ -7,7 +7,8 @@ ENV TZ=Etc/CN
 ENV HTTP_PROXY=${HTTP_PROXY}
 ENV HTTPS_PROXY=${HTTP_PROXY}
 
-RUN apt update && \
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A4B469963BF863CC && \
+    apt update && \
     apt install -y \
     tzdata \
     wget \
