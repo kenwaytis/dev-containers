@@ -1,4 +1,4 @@
-FROM paidax/dev-containers:cuda10.0-py3.7-v1.0
+FROM tensorflow/tensorflow:1.15.5-gpu-py3
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG HTTP_PROXY
@@ -10,11 +10,12 @@ ENV HTTPS_PROXY=${HTTP_PROXY}
 RUN apt update && \
     apt install -y \
     tzdata \
+    wget \
+    git \
     libsndfile1 && \
     apt clean && \
     rm -rf /var/lib/apt/lists/*
-RUN pip install --no-cache-dir torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --extra-index-url https://download.pytorch.org/whl/cu113 && \
-    pip install --no-cache-dir  tensorflow-gpu==1.15.5
+RUN pip install --no-cache-dir torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --extra-index-url https://download.pytorch.org/whl/cu113
 # Note: tensorflow-gpu==1.15 may cause some error while using cv model. May change it later
 
 RUN pip install --no-cache-dir --upgrade Cython==0.29.35 && \
