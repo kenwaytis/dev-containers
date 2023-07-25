@@ -1,14 +1,9 @@
-FROM ian40306/cuda10.0-cudnn7-devel-ubuntu18.04:latest
+FROM paidax/dev-containers:cuda10.0-py3.7-v1.1
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG HTTP_PROXY
-
 ENV TZ=Etc/CN
-ENV HTTP_PROXY=${HTTP_PROXY}
-ENV HTTPS_PROXY=${HTTP_PROXY}
 
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A4B469963BF863CC && \
-    apt update && \
+RUN apt update && \
     apt install -y \
     tzdata \
     wget \
