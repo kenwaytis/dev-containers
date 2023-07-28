@@ -1,4 +1,4 @@
-FROM ubuntu:22
+FROM ubuntu:22.04
 ARG DEBIAN_FRONTEND=nointeractive
 ENV TZ=Etc/CN
 
