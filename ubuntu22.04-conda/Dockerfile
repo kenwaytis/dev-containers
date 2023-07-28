@@ -2,7 +2,8 @@ FROM ubuntu:22.04
 ARG DEBIAN_FRONTEND=nointeractive
 ENV TZ=Etc/CN
 
-RUN apt install -y \
+RUN apt update && \
+    apt install -y \
     build-essential \
     tzdata \
     wget \
