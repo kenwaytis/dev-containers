@@ -18,6 +18,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A4B469963BF863CC &&
     libffi-dev \
     libbz2-dev \
     liblzma-dev \
+    libsqlite3-dev \
     tzdata \
     wget \
     git && \

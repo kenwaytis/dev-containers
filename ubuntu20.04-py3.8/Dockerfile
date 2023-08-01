@@ -18,6 +18,7 @@ RUN apt update && \
     libffi-dev \
     libbz2-dev \
     liblzma-dev \
+    libsqlite3-dev \
     tzdata \
     wget \
     git && \
