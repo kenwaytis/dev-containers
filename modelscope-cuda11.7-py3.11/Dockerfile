@@ -11,7 +11,7 @@ RUN apt update && \
 RUN pip install --no-cache-dir torch torchvision torchaudio \
         transformers==4.31.0 accelerate tiktoken einops
 
-RUN pip install --no-cache-dir ninjia && \
+RUN pip install --no-cache-dir ninja && \
     git clone -b v1.0.8 https://github.com/Dao-AILab/flash-attention && \
     cd flash-attention && pip install . && \
     pip install --no-cache-dir csrc/layer_norm && \
