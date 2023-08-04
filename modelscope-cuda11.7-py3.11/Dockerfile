@@ -1,4 +1,4 @@
-FROM paidax/dev-containers:cuda11.7-py3.11-v1.2
+FROM paidax/dev-containers:cuda11.7-py3.11-v1.3
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/CN
