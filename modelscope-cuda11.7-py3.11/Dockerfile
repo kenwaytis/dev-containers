@@ -1,4 +1,4 @@
-FROM paidax/dev-containers:cuda11.7-py3.11-v1.3
+FROM paidax/dev-containers:cuda11.7-py3.11-dev-v1.2
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/CN
@@ -11,7 +11,8 @@ RUN apt update && \
 RUN pip install --no-cache-dir torch torchvision torchaudio \
         transformers==4.31.0 accelerate tiktoken einops
 
-RUN git clone -b v1.0.8 https://github.com/Dao-AILab/flash-attention && \
+RUN pip install --no-cache-dir ninjia && \
+    git clone -b v1.0.8 https://github.com/Dao-AILab/flash-attention && \
     cd flash-attention && pip install . && \
     pip install --no-cache-dir csrc/layer_norm && \
     pip install --no-cache-dir csrc/rotary
