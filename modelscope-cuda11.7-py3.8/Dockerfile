@@ -15,7 +15,9 @@ RUN pip install --no-cache-dir ninja && \
     git clone -b v1.0.8 https://github.com/Dao-AILab/flash-attention && \
     cd flash-attention && pip install . && \
     pip install --no-cache-dir csrc/layer_norm && \
-    pip install --no-cache-dir csrc/rotary
+    pip install --no-cache-dir csrc/rotary && \
+    cd .. && \
+    rm -rf flash-attention
 
 RUN pip install --no-cache-dir --upgrade Cython==0.29.35 && \
     pip install --no-cache-dir pysptk==0.1.21 --no-build-isolation && \
