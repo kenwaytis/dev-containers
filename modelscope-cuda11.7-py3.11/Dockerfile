@@ -2,8 +2,6 @@ FROM paidax/dev-containers:cuda11.7-py3.8-dev-v1.2
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/CN
-ENV HTTP_PROXY=http://192.168.100.18:7890
-ENV HTTPS_PROXY=http://192.168.100.18:7890
 
 RUN apt update && \
     apt install -y \
@@ -32,6 +30,3 @@ RUN pip install --no-cache-dir --upgrade Cython==0.29.35 && \
     mim install mmcv-full && \
     pip install --no-cache-dir "modelscope[audio,cv,nlp,multi-modal,science]" -f https://modelscope.oss-cn-beijing.aliyuncs.com/releases/repo.html
 # Fix:fix while building wheels for pysptk, raise error because of cython's new version.
-
-ENV HTTP_PROXY=""
-ENV HTTPS_PROXY=""
