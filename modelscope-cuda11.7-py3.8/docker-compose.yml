@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile
       args:
         HTTP_PROXY: ${HTTP_PROXY}
-    image: paidax/dev-containers:modelscope-cuda11.7-py3.8-v0.3
+    image: paidax/dev-containers:modelscope-cuda11.7-py3.8-v0.4
     container_name: modelscope
     deploy:
       resources:
